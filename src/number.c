@@ -18,13 +18,13 @@ sbit dpyG = P2^1;
 sbit dpyH = P2^3;
 
 
-int  overNum = 0;   //溢出次数
+
 char forth = 0;
 char third = 0;
 char second = 0;
 char first = 0;
 char index = 0;
-char index2 = 0;
+
 
 static void allOn(void)
 {
@@ -228,26 +228,9 @@ void Timer0_isr(void) interrupt 1
     default:break;
     }
     index ++;
-    index2 ++;
     if(index > 3)
         index = 0;
-    if(index2 > 50)
-    {
-        index2 = 0;
-        BEEP=~BEEP;
-    }
-    TR0 = 1;
-
-}
-
-void Timer1_isr(void) interrupt 3
-{
-
-    TR0 = 0;
-    TH1 = 0x00;	 //设置初始值
-    TL1 = 0x00;
-    overNum++;
-
+    
     TR0 = 1;
 
 }
