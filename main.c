@@ -7,9 +7,8 @@
 
 sbit RX=P1^1;
 sbit TX=P1^0;
-
-unsigned int  time=0;
-unsigned long S=0;
+extern int overNum;
+long S=0;
 //--声明全局函数--//
 void Delay10ms(unsigned int c);   //延时10ms
 
@@ -34,11 +33,12 @@ void Init_Timer(void)
 
 void Conut(void)
 {
-    time=TH1*256+TL1;
+    long  time;
+    time=TH1*256+TL1 + 65536*overNum;
     TH1=0;
     TL1=0;
-
-    S= (long)(time*0.172);     //算出来是MM
+    overNum = 0;
+    S= (time*0.172);     //算出来是MM
 
 }
 /*******************************************************************************
@@ -65,27 +65,9 @@ void main()
         //showDistance(0);
 LABEL1:
         TX=1;			                //800MS  启动一次模块
-        _nop_(); 
-        _nop_(); 
-        _nop_(); 
-        _nop_(); 
-        _nop_(); 
-        _nop_(); 
-        _nop_(); 
-        _nop_(); 
-        _nop_(); 
-        _nop_(); 
-        _nop_(); 
-        _nop_(); 
-        _nop_(); 
-        _nop_(); 
-        _nop_(); 
-        _nop_(); 
-        _nop_();
-        _nop_(); 
-        _nop_(); 
-        _nop_(); 
-        _nop_();
+        for (i=0;i<15;i++)
+            _nop_(); 
+
         TX=0;
         //BEEP = 1;
         i= 0;
@@ -100,14 +82,6 @@ LABEL1:
         i= 0;
         while(RX)
         {
-            i++;
-            if(i > 60000)
-            {
-                TR1 = 0;
-                TH1=0;
-                TL1=0;
-                goto  LABEL1;
-            }
         }
         //当RX为1计数并等待
         TR1=0;				//关闭计数

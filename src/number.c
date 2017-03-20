@@ -18,13 +18,13 @@ sbit dpyG = P2^1;
 sbit dpyH = P2^3;
 
 
-
-volatile char forth = 0;
-volatile char third = 0;
-volatile char second = 0;
-volatile char first = 0;
-volatile char index = 0;
-volatile char index2 = 0;
+int  overNum = 0;   //溢出次数
+char forth = 0;
+char third = 0;
+char second = 0;
+char first = 0;
+char index = 0;
+char index2 = 0;
 
 static void allOn(void)
 {
@@ -170,6 +170,8 @@ static void showNumber(char number)
 void showDistance(int distance)
 {
 
+    if(distance > 10000)
+        distance = 9999;
     forth = distance /1000%10;
     third = distance/100%10;
     second = distance/10%10;
@@ -187,8 +189,8 @@ void Timer0_isr(void) interrupt 1
 {
 
     TR0 = 0;
-    TH0 = 0xfb;	 //设置初始值
-    TL0 = 0x90;
+    TH0 = 0xef;	 //设置初始值
+    TL0 = 0xff;
     //      allOff();
     switch(index)
     {
@@ -234,6 +236,18 @@ void Timer0_isr(void) interrupt 1
         index2 = 0;
         BEEP=~BEEP;
     }
+    TR0 = 1;
+
+}
+
+void Timer1_isr(void) interrupt 3
+{
+
+    TR0 = 0;
+    TH1 = 0x00;	 //设置初始值
+    TL1 = 0x00;
+    overNum++;
+
     TR0 = 1;
 
 }
