@@ -376,9 +376,23 @@
         </Group>
         <Group>
           <GroupName>src</GroupName>
+          <Files>
+            <File>
+              <FileName>number.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\number.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>inc</GroupName>
+          <Files>
+            <File>
+              <FileName>number.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\inc\number.h</FilePath>
+            </File>
+          </Files>
         </Group>
       </Groups>
     </Target>
