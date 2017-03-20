@@ -1,34 +1,19 @@
 Build target 'Target 1'
-compiling main.c...
 linking...
 *** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
-    SYMBOL:  OVERNUM
-    MODULE:  .\obj\main.obj (MAIN)
-
-*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
     SYMBOL:  _SHOWDISTANCE
     MODULE:  .\obj\main.obj (MAIN)
 
 *** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
-    SYMBOL:  OVERNUM
+    SYMBOL:  _SHOWDISTANCE
     MODULE:  .\obj\main.obj (MAIN)
-    ADDRESS: 03FCH
-
-*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
-    SYMBOL:  OVERNUM
-    MODULE:  .\obj\main.obj (MAIN)
-    ADDRESS: 043CH
+    ADDRESS: 02D6H
 
 *** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
     SYMBOL:  _SHOWDISTANCE
     MODULE:  .\obj\main.obj (MAIN)
-    ADDRESS: 028AH
+    ADDRESS: 03B3H
 
-*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
-    SYMBOL:  _SHOWDISTANCE
-    MODULE:  .\obj\main.obj (MAIN)
-    ADDRESS: 0361H
-
-Program Size: data=9.0 xdata=8 code=1171
+Program Size: data=9.0 xdata=13 code=1149
 creating hex file from ".\obj\51template"...
-".\obj\51template" - 0 Error(s), 6 Warning(s).
+".\obj\51template" - 0 Error(s), 3 Warning(s).
